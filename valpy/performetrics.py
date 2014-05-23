@@ -60,3 +60,21 @@ def fp(snpTrueFalse, threshold, scoreColumn):
 			falsePositives += 1
 		count += 1
 	return falsePositives
+
+
+def tpr(snpTrueFalse, threshold, scoreColumn):
+	truePositives = tp(snpTrueFalse, threshold, scoreColumn)
+	count = 0.0
+	for each in snpTrueFalse:
+		if each is True:
+			count += 1.0
+	return float(truePositives/count)
+
+
+def fpr(snpTrueFalse, threshold, scoreColumn):
+	falsePositives = fp(snpTrueFalse, threshold, scoreColumn)
+	count = 0.0
+	for each in snpTrueFalse:
+		if each is False:
+			count += 1.0
+	return float(falsePositives/count)
