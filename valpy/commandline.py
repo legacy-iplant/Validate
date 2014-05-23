@@ -29,7 +29,7 @@ def usage():
 	print "--Snp or -S to specify a string for the name of the SNP column in results file (required)"
 	print "--Score or -P to specify a string for the name of the scoring column in results file (e.g., p-value; required)"
 	print "--beta or -b to specify a string for the name of the estimated SNP effect column in results file"
-	print "--severity or -V to specify a severity ratio to use in calculating the H-measure (recommended 1 or pi1/pi0)"
+	print "--severity or -y to specify a severity ratio to use in calculating the H-measure (recommended 1 or pi1/pi0)"
 	print "--filename or -f to specify the desired filename for the Validate output file"
 	print "--threshold ir -t to specify a desired threshold for classification performetrics where necessary"
 	print "--seper or -s to specify either whitespace or comma"
