@@ -53,7 +53,7 @@ def checkArgs():
 	# Specifiying initial values of needed variables; unneeded specification when desiring defaults
 	verbose = False
 	analysis = "GWAS"
-	filename = "Results.txt"
+	filename = "Results"
 	threshold = 0.05
 	seper = "whitespace"
 	kttype = "OTE"

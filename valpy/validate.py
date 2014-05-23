@@ -53,7 +53,7 @@ def main():
 		if severity is None:
 			severity = float(len(ktSnps))/float(len(snpTrueFalse) - len(ktSnps))
 
-
+	firstForHeader = True
 	for each in appOutputList:
 		acquiredData = loadFile(folder, each, seper)
 		snpColumnNo = acquiredData.header.index(snp)
@@ -72,11 +72,21 @@ def main():
 			for each in acquiredData.data.iteritems():
 				betaColumn.append(float(each[1][betaColumnNo]))
 
-		if analysis == "GWAS":
+		if analysis == "GWAS" and firstForHeader:
 			if beta is not None:
-				print gwasWithBeta(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn, threshold)
+				keepToWrite = gwasWithBeta(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn, threshold)
+				writeCSV(filename, keepToWrite, "wb")
 			if beta is None:
-				print gwasWithoutBeta(snpTrueFalse, scoreColumn, threshold)
+				keepToWrite = gwasWithoutBeta(snpTrueFalse, scoreColumn, threshold)
+				writeCSV(filename, keepToWrite, "wb")
+		else:
+			if beta is not None:
+				keepToWrite = gwasWithBeta(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn, threshold)
+				writeCSV(filename, keepToWrite, "a")
+			if beta is None:
+				keepToWrite = gwasWithoutBeta(snpTrueFalse, scoreColumn, threshold)
+				writeCSV(filename, keepToWrite, "a")
+		firstForHeader = False
 
 
 if __name__ == "__main__":

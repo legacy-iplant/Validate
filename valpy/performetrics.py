@@ -19,6 +19,12 @@ def mae(betaColumn, betaTrueFalse):
 	return np.mean(np.absolute(np.subtract(betaColumn, betaTrueFalse)))
 
 
+def r(betaColumn, betaTrueFalse):
+	betaColumn = np.array(betaColumn)
+	betaTrueFalse = np.array(betaTrueFalse)
+	return stats.stats.pearsonr(betaColumn, betaTrueFalse)[0]
+
+
 def auc(snpTrueFalse, scoreColumn):
 	scoreColumn = np.array(scoreColumn)
 	snpTrueFalse = np.array(snpTrueFalse)

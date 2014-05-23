@@ -3,7 +3,7 @@ Functions to import both class and results folder files
 """
 
 
-import os, data
+import os, data, csv
 
 
 def getList(folder):
@@ -23,3 +23,14 @@ def trueFalse(currentSnp, ktSnps):
 		return True
 	else:
 		return False
+
+
+def writeCSV(filename, keepToWrite, method="wb"):
+	with open(filename + ".txt", method) as openFile:
+		openFileWriter = csv.writer(openFile, delimiter=",")
+		if method == "wb":
+			openFileWriter.writerow(keepToWrite[0])
+		currentRow = list()
+		for item in keepToWrite[1]:
+			currentRow.append(item)
+		openFileWriter.writerow(currentRow)
