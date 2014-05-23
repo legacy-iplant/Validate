@@ -19,7 +19,7 @@ def main():
 	ktFile = loadKT(truth, kttypeseper)
 
 
-	if kttype is "OTE":
+	if kttype == "OTE":
 		acquiredData = loadFile(folder, appOutputList[0], seper)
 		snpColumnNo = acquiredData.header.index(snp)
 		snpColumn = list()
