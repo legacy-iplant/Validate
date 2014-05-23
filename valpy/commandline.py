@@ -24,10 +24,10 @@ def usage():
 	print "Command-line usage help menu.\n"
 	print "--verbose or -v for verbose mode"
 	print "--analysis or -a to specify either 'GWAS' or 'prediction' (if blank, Validate assumes GWAS)"
-	print "--folder or -F to input folder of box results (required)"
-	print "--class or -C to specify the known-truth file for used simulation (required)"
-	print "--snp or -S to specify a string for the name of the SNP column in results file (required)"
-	print "--score or -P to specify a string for the name of the scoring column in results file (e.g., p-value; required)"
+	print "--Folder or -F to input folder of box results (required)"
+	print "--Class or -C to specify the known-truth file for used simulation (required)"
+	print "--Snp or -S to specify a string for the name of the SNP column in results file (required)"
+	print "--Score or -P to specify a string for the name of the scoring column in results file (e.g., p-value; required)"
 	print "--beta or -b to specify a string for the name of the estimated SNP effect column in results file"
 	print "--severity or -V to specify a severity ratio to use in calculating the H-measure (recommended 1 or pi1/pi0)"
 	print "--filename or -f to specify the desired filename for the Validate output file"
@@ -42,7 +42,7 @@ def usage():
 def checkArgs():
 	try:
 		opts, args = getopt.getopt(sys.argv[1:], shortopts="vha:F:C:S:P:b:y:f:t:s:k:r", longopts=["verbose", "help", 
-			"analysis=", "folder=", "class=", "snp=", "score=", "beta=", "filename=", "threshold=", "seper=", "kttype=",
+			"analysis=", "Folder=", "Class=", "Snp=", "Score=", "beta=", "filename=", "threshold=", "seper=", "kttype=",
 			"kttypeseper=", "severity="])
 
 	except getopt.GetoptError as err:
