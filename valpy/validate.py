@@ -75,17 +75,17 @@ def main():
 		if analysis == "GWAS" and firstForHeader:
 			if beta is not None:
 				keepToWrite = gwasWithBeta(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn, threshold)
-				writeCSV(filename, keepToWrite, "wb")
+				writeCSV(filename, keepToWrite, "wb", "\t")
 			if beta is None:
 				keepToWrite = gwasWithoutBeta(snpTrueFalse, scoreColumn, threshold)
-				writeCSV(filename, keepToWrite, "wb")
+				writeCSV(filename, keepToWrite, "wb", "\t")
 		else:
 			if beta is not None:
 				keepToWrite = gwasWithBeta(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn, threshold)
-				writeCSV(filename, keepToWrite, "a")
+				writeCSV(filename, keepToWrite, "a", "\t")
 			if beta is None:
 				keepToWrite = gwasWithoutBeta(snpTrueFalse, scoreColumn, threshold)
-				writeCSV(filename, keepToWrite, "a")
+				writeCSV(filename, keepToWrite, "a", "\t")
 		firstForHeader = False
 
 

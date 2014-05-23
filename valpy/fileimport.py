@@ -25,9 +25,9 @@ def trueFalse(currentSnp, ktSnps):
 		return False
 
 
-def writeCSV(filename, keepToWrite, method="wb"):
+def writeCSV(filename, keepToWrite, method="wb", exportDelimiter=","):
 	with open(filename + ".txt", method) as openFile:
-		openFileWriter = csv.writer(openFile, delimiter=",")
+		openFileWriter = csv.writer(openFile, delimiter=exportDelimiter)
 		if method == "wb":
 			openFileWriter.writerow(keepToWrite[0])
 		currentRow = list()
