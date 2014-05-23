@@ -110,3 +110,5 @@ def fpr(snpTrueFalse, threshold, scoreColumn):
 		if each is False:
 			count += 1.0
 	return float(falsePositives/count)
+
+
