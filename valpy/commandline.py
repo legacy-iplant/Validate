@@ -41,9 +41,9 @@ def usage():
 # Checks for arguments at beginning of the execution of the main function
 def checkArgs():
 	try:
-		opts, args = getopt.getopt(sys.argv[1:], shortopts="vha:F:C:S:P:b:V:f:t:s:k:r", longopts=["verbose", "help", 
+		opts, args = getopt.getopt(sys.argv[1:], shortopts="vha:F:C:S:P:b:y:f:t:s:k:r", longopts=["verbose", "help", 
 			"analysis=", "folder=", "class=", "snp=", "score=", "beta=", "filename=", "threshold=", "seper=", "kttype=",
-			"kttypeseper="])
+			"kttypeseper=", "severity="])
 
 	except getopt.GetoptError as err:
 		print(err)
@@ -113,6 +113,10 @@ def checkArgs():
 			kttypeseper = str(o[1])
 			if verbose:
 				print "Known-truth data format delimination is set as", kttypeseper
+		if o[1] in ("--severity", "-y"):
+			severity = float(o[1])
+			if verbose:
+				print "Severity ratio is specified at", severity
 
 	# Check to see if needed variables are defined
 	try:
@@ -146,4 +150,10 @@ def checkArgs():
 	except NameError:
 		beta = None
 
-	return folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper
+	# Setting severity equal to null if not used
+	try:
+		severity
+	except NameError:
+		severity = None
+
+	return folder, analysis, truth, snp, score, beta, filename, threshold, seper, kttype, kttypeseper, severity
