@@ -112,3 +112,33 @@ def fpr(snpTrueFalse, threshold, scoreColumn):
 	return float(falsePositives/count)
 
 
+def error(snpTrueFalse, threshold, scoreColumn):
+	truePositives = float(tp(snpTrueFalse, threshold, scoreColumn))
+	falsePositives = float(fp(snpTrueFalse, threshold, scoreColumn))
+	trueNegatives = float(tn(snpTrueFalse, threshold, scoreColumn))
+	falseNegatives = float(fn(snpTrueFalse, threshold, scoreColumn))
+	return (falseNegatives + falsePositives) / (truePositives + trueNegatives + falsePositives + falseNegatives)
+
+
+def sens(snpTrueFalse, threshold, scoreColumn):
+	truePositives = float(tp(snpTrueFalse, threshold, scoreColumn))
+	falseNegatives = float(fn(snpTrueFalse, threshold, scoreColumn))
+	return truePositives / (truePositives + falseNegatives)
+
+
+def spec(snpTrueFalse, threshold, scoreColumn):
+	trueNegatives = float(tn(snpTrueFalse, threshold, scoreColumn))
+	falsePositives = float(fp(snpTrueFalse, threshold, scoreColumn))
+	return trueNegatives / (trueNegatives + falsePositives)
+
+
+def precision(snpTrueFalse, threshold, scoreColumn):
+	truePositives = float(tp(snpTrueFalse, threshold, scoreColumn))
+	falsePositives = float(fp(snpTrueFalse, threshold, scoreColumn))
+	return truePositives / (truePositives + falsePositives)
+
+
+def youden(snpTrueFalse, threshold, scoreColumn):
+	sensitivity = float(sens(snpTrueFalse, threshold, scoreColumn))
+	specificity = float(spec(snpTrueFalse, threshold, scoreColumn))
+	return sensitivity + sensitivity - 1.0
