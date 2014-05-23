@@ -70,7 +70,7 @@ def main():
 				betaColumn.append(float(each[1][betaColumnNo]))
 
 		if analysis == "GWAS":
-			print gwas(betaColumn, betaTrueFalse)
+			print gwas(betaColumn, betaTrueFalse, snpTrueFalse, scoreColumn)
 
 
 if __name__ == "__main__":
