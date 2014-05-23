@@ -29,3 +29,34 @@ def auc(snpTrueFalse, scoreColumn):
 	r = stats.rankdata(np.hstack((x1,x2)))
 	auc = (np.sum(r[0:n1]) - n1 * (n1+1)/2) / (n1 * n2)
 	return 1 - auc
+
+
+def tp(snpTrueFalse, threshold, scoreColumn):
+	testColumn = list()
+	for each in scoreColumn:
+		if float(each) < threshold:
+			testColumn.append(True)
+		else:
+			testColumn.append(False)
+	count = 0
+	truePositives = 0
+	for each in testColumn:
+		if each is True and snpTrueFalse[count] is True:
+			truePositives += 1
+		count += 1
+	return truePositives
+
+def fp(snpTrueFalse, threshold, scoreColumn):
+	testColumn = list()
+	for each in scoreColumn:
+		if float(each) < threshold:
+			testColumn.append(True)
+		else:
+			testColumn.append(False)
+	count = 0
+	falsePositives = 0
+	for each in testColumn:
+		if each is True and snpTrueFalse[count] is False:
+			falsePositives += 1
+		count += 1
+	return falsePositives
