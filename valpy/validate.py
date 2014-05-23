@@ -63,8 +63,6 @@ def main():
 		for each in acquiredData.data.iteritems():
 			scoreColumn.append(float(each[1][scoreColumnNo]))
 
-		
-
 		if beta is not None:
 			betaColumnNo = acquiredData.header.index(beta)
 			betaColumn = list()
