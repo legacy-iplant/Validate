@@ -62,6 +62,38 @@ def fp(snpTrueFalse, threshold, scoreColumn):
 	return falsePositives
 
 
+def tn(snpTrueFalse, threshold, scoreColumn):
+	testColumn = list()
+	for each in scoreColumn:
+		if float(each) < threshold:
+			testColumn.append(True)
+		else:
+			testColumn.append(False)
+	count = 0
+	trueNegatives = 0
+	for each in testColumn:
+		if each is False and snpTrueFalse[count] is False:
+			trueNegatives += 1
+		count += 1
+	return trueNegatives
+
+
+def fn(snpTrueFalse, threshold, scoreColumn):
+	testColumn = list()
+	for each in scoreColumn:
+		if float(each) < threshold:
+			testColumn.append(True)
+		else:
+			testColumn.append(False)
+	count = 0
+	falseNegatives = 0
+	for each in testColumn:
+		if each is False and snpTrueFalse[count] is True:
+			falseNegatives += 1
+		count += 1
+	return falseNegatives
+
+
 def tpr(snpTrueFalse, threshold, scoreColumn):
 	truePositives = tp(snpTrueFalse, threshold, scoreColumn)
 	count = 0.0
