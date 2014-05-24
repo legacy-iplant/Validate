@@ -1,5 +1,5 @@
 """
-Performance measures for testing Validate
+Performance measures for testing applications in Validate
 """
 
 
