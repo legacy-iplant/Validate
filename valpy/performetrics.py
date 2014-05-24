@@ -5,6 +5,7 @@ Performance measures for testing Validate
 
 import numpy as np
 from scipy import stats
+import random
 
 
 def rmse(betaColumn, betaTrueFalse):
@@ -30,6 +31,17 @@ def r2(betaColumn, betaTrueFalse):
 	betaTrueFalse = np.array(betaTrueFalse)
 	return np.square(stats.stats.pearsonr(betaColumn, betaTrueFalse)[0])
 
+"""
+def h(snpTrueFalse, scoreColumn):
+	
+	LHShape1 = 1
+	for i in range(1, hc):
+		LHShape1 = LHShape1 + pi0 * (1 - G0[i]) * (b0[(i + 1)] - b0[i]) + pi1 * G1[i] * (b1[(i + 1)] - b1[i])
+	B0 = stats.beta.cdf(pi1, (1 + shape1), shape2) * b10/b00
+	B1 = stats.beta.cdf(1, shape1, (1 + shape2)) * b01/b00 - stats.beta.cdf(pi1, shape1, (1 + shape2)) * b01/b00
+	h = 1 - LHShape1/(pi0 * B0 + pi1 * B1)
+	return h
+"""
 
 def auc(snpTrueFalse, scoreColumn):
 	scoreColumn = np.array(scoreColumn)
@@ -57,6 +69,7 @@ def tp(snpTrueFalse, threshold, scoreColumn):
 			truePositives += 1
 		count += 1
 	return truePositives
+
 
 def fp(snpTrueFalse, threshold, scoreColumn):
 	testColumn = list()
