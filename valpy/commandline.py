@@ -69,7 +69,7 @@ def checkArgs():
 			verbose = True
 			print ("Verbose mode\n")
 	for o in opts:
-		if o[0] in ("--folder", "-F"):
+		if o[0] in ("--Folder", "-F"):
 			folder = str(o[1])
 			if verbose:
 				print "Folder of results files for validation is located in", folder
@@ -77,15 +77,15 @@ def checkArgs():
 			analysis = str(o[1])
 			if verbose:
 				print "Analysis method being validated is specified as", analysis
-		if o[0] in ("--class", "-C"):
+		if o[0] in ("--Class", "-C"):
 			truth = str(o[1])
 			if verbose:
 				print "Truth file is", truth
-		if o[0] in ("--snp", "-S"):
+		if o[0] in ("--Snp", "-S"):
 			snp = str(o[1])
 			if verbose:
 				print "SNP column name in results files is specified as", snp
-		if o[0] in ("--score", "-P"):
+		if o[0] in ("--Score", "-P"):
 			score = str(o[1])
 			if verbose:
 				print "Scoring column name (e.g., p-value column) in results files is specified as", score
