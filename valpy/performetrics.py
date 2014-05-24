@@ -25,6 +25,12 @@ def r(betaColumn, betaTrueFalse):
 	return stats.stats.pearsonr(betaColumn, betaTrueFalse)[0]
 
 
+def r2(betaColumn, betaTrueFalse):
+	betaColumn = np.array(betaColumn)
+	betaTrueFalse = np.array(betaTrueFalse)
+	return np.square(stats.stats.pearsonr(betaColumn, betaTrueFalse)[0])
+
+
 def auc(snpTrueFalse, scoreColumn):
 	scoreColumn = np.array(scoreColumn)
 	snpTrueFalse = np.array(snpTrueFalse)
