@@ -65,7 +65,7 @@ def checkArgs():
 			usage()
 			sys.exit()
 	for o in opts:
-		if o[0] in ("--verbose", "-V"):
+		if o[0] in ("--verbose", "-v"):
 			verbose = True
 			print ("Verbose mode\n")
 	for o in opts:
