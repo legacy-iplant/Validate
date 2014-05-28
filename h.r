@@ -2,7 +2,7 @@
 test.data <- read.table(file="/users/dustin/validate/outputplink/plinkstd1.qassoc", header=TRUE)
 s <- test.data$P
 snps <- test.data$SNP
-y <- c(TRUE, TRUE, TRUE, rep(FALSE, length(snps)-3))
+y <- c(1, 1, 1, rep(0, length(snps)-3))
 
 # Functions
 n <- length(s)
@@ -10,7 +10,7 @@ n1 <- sum(y)
 n0 <- n-n1
 pi0 <- n0/n
 pi1 <- n1/n
-severity.ratio <- pi0/pi1
+severity.ratio <- pi1/pi0
 zord <- order(s)
 sc <- s[zord]
 
@@ -58,21 +58,15 @@ cost[hc + 1] <- 1
 b00 <- beta(shape1, shape2)
 b10 <- beta(1 + shape1, shape2)
 b01 <- beta(shape1, 1 + shape2)
-b0[1] <- pbeta(cost[1], shape1 = (1 + shape1), shape2 = shape2) * 
-  b10/b00
-b1[1] <- pbeta(cost[1], shape1 = shape1, shape2 = (1 + 
-                                                     shape2)) * b01/b00
-b0[hc + 1] <- pbeta(cost[hc + 1], shape1 = (1 + shape1), 
-                    shape2 = shape2) * b10/b00
-b1[hc + 1] <- pbeta(cost[hc + 1], shape1 = shape1, shape2 = (1 + 
-                                                               shape2)) * b01/b00
+b0[1] <- pbeta(cost[1], shape1 = (1 + shape1), shape2 = shape2) * b10/b00
+b1[1] <- pbeta(cost[1], shape1 = shape1, shape2 = (1 + shape2)) * b01/b00
+b0[hc + 1] <- pbeta(cost[hc + 1], shape1 = (1 + shape1), shape2 = shape2) * b10/b00
+b1[hc + 1] <- pbeta(cost[hc + 1], shape1 = shape1, shape2 = (1 + shape2)) * b01/b00
+
 for (i in 2:hc) {
-  cost[i] <- pi1 * (G1[i] - G1[i - 1])/(pi0 * (G0[i] - 
-                                                 G0[i - 1]) + pi1 * (G1[i] - G1[i - 1]))
-  b0[i] <- pbeta(cost[i], shape1 = (1 + shape1), shape2 = shape2) * 
-    b10/b00
-  b1[i] <- pbeta(cost[i], shape1 = shape1, shape2 = (1 + 
-                                                       shape2)) * b01/b00
+  cost[i] <- pi1 * (G1[i] - G1[i - 1])/(pi0 * (G0[i] - G0[i - 1]) + pi1 * (G1[i] - G1[i - 1]))
+  b0[i] <- pbeta(cost[i], shape1 = (1 + shape1), shape2 = shape2) * b10/b00
+  b1[i] <- pbeta(cost[i], shape1 = shape1, shape2 = (1 + shape2)) * b01/b00
 }
 
 LHshape1 <- 0
@@ -80,10 +74,6 @@ for (i in 1:hc) {
   LHshape1 <- LHshape1 + pi0 * (1 - G0[i]) * (b0[(i + 1)] - b0[i]) + pi1 * G1[i] * (b1[(i + 1)] - b1[i])
 }
 
-B0 <- pbeta(pi1, shape1 = (1 + shape1), shape2 = shape2) * 
-  b10/b00
-B1 <- pbeta(1, shape1 = shape1, shape2 = (1 + shape2)) * 
-  b01/b00 - pbeta(pi1, shape1 = shape1, shape2 = (1 + 
-                                                    shape2)) * b01/b00
+B0 <- pbeta(pi1, shape1 = (1 + shape1), shape2 = shape2) * b10/b00
+B1 <- pbeta(1, shape1 = shape1, shape2 = (1 + shape2)) * b01/b00 - pbeta(pi1, shape1 = shape1, shape2 = (1 + shape2)) * b01/b00
 H <- 1 - LHshape1/(pi0 * B0 + pi1 * B1)
-
