@@ -77,8 +77,7 @@ for (i in 2:hc) {
 
 LHshape1 <- 0
 for (i in 1:hc) {
-  LHshape1 <- LHshape1 + pi0 * (1 - G0[i]) * (b0[(i + 
-                                                    1)] - b0[i]) + pi1 * G1[i] * (b1[(i + 1)] - b1[i])
+  LHshape1 <- LHshape1 + pi0 * (1 - G0[i]) * (b0[(i + 1)] - b0[i]) + pi1 * G1[i] * (b1[(i + 1)] - b1[i])
 }
 
 B0 <- pbeta(pi1, shape1 = (1 + shape1), shape2 = shape2) * 
