@@ -4,8 +4,25 @@ Performance measures for testing applications in Validate
 
 
 import numpy as np
+import pandas as pd
 from scipy import stats
 import random
+
+
+def h(snpTrueFalse, scoreColumn):
+	n = float(len(scoreColumn))
+	n1 = float(sum(snpTrueFalse))
+	n0 = n - n1
+	pi0 = n0/n
+	pi1 = n1/n
+	severityRatio = pi1/pi0
+	zord = pd.Series(np.ravel(scoreColumn).argsort())
+	sc = list()
+	count = 0
+	for each in scoreColumn:
+		sc.append(scoreColumn[zord[count]])
+		count += 1
+	sc = pd.Series(sc)
 
 
 def rmse(betaColumn, betaTrueFalse):
