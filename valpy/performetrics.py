@@ -23,7 +23,7 @@ def h(snpTrueFalse, scoreColumn):
 		sc.append(scoreColumn[zord[count]])
 		count += 1
 	sc = pd.Series(sc)
-
+#Need some kind of return value for this h function
 
 def rmse(betaColumn, betaTrueFalse):
 	betaColumn = np.array(betaColumn)
@@ -172,4 +172,4 @@ def precision(snpTrueFalse, threshold, scoreColumn):
 def youden(snpTrueFalse, threshold, scoreColumn):
 	sensitivity = float(sens(snpTrueFalse, threshold, scoreColumn))
 	specificity = float(spec(snpTrueFalse, threshold, scoreColumn))
-	return sensitivity + sensitivity - 1.0
+	return sensitivity + specificity - 1.0
